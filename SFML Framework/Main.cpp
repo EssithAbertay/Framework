@@ -60,6 +60,11 @@ void handleEvents(sf::RenderWindow *wn, Input *in)
         {
             in->setMouseButtonDown(mouse_button_released->button, false);
         }
+
+        if (const auto* mouse_moved = event->getIf<sf::Event::MouseMoved>())
+        {
+            in->setMousePosition(wn);
+        }
     }
 
 }

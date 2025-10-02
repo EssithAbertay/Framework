@@ -11,6 +11,7 @@ public:
 	void setJoystickAxis(sf::Joystick::Axis axis, float value);
 	void setKeyDown(sf::Keyboard::Scancode sc, bool state);
 	void setMouseButtonDown(sf::Mouse::Button mb, bool state);
+	void setMousePosition(sf::Window * wn);
 
 	// Used to determine if a key is currently being held down.
 	bool isKeyDown(sf::Keyboard::Key key);
@@ -60,6 +61,10 @@ public:
 
 	sf::Vector2f left_joystick = {0,0};
 	sf::Vector2f right_joystick = {0,0};
+
+
+	sf::Vector2i mouse_pos_local = { 0,0 };
+	sf::Vector2i mouse_pos_global = { 0,0 };
 
 protected:
 	float dpad_tolerance = 50;	
