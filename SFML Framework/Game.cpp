@@ -14,7 +14,6 @@ Game::~Game()
 
 void Game::handleInput(Input *in)
 {
-
 }
 
 void Game::fixedUpdate(float fixed_timestep)

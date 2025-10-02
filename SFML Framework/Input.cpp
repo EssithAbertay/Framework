@@ -107,3 +107,83 @@ void Input::setJoystickAxis(sf::Joystick::Axis axis, float value)
 	}
 }
 
+void Input::setKeyDown(sf::Keyboard::Scancode sc, bool state)
+{
+	int idx = static_cast<int>(sc);
+	keys[idx] = state;
+	recently_updated_keys[sc] = state;
+}
+
+bool Input::isKeyDown(sf::Keyboard::Key key)
+{
+	int idx = static_cast<int>(key);
+	return keys[idx];
+}
+
+bool Input::isKeyPressed(sf::Keyboard::Key key)
+{
+	// key can't just be pressed if it isn't down
+	if (!isKeyDown(key)) return false;
+
+	sf::Keyboard::Scancode sc = static_cast<sf::Keyboard::Scancode>(key);
+
+	// check if the key exists in map before accessing with op[]
+	// to prevent inserting that key into map
+	if (recently_updated_keys.count(sc) == 0) return false;
+	return recently_updated_keys[sc];
+}
+
+bool Input::isKeyReleased(sf::Keyboard::Key key)
+{
+	// key can't just be released if it is down
+	if (isKeyDown(key)) return false;
+
+	sf::Keyboard::Scancode sc = static_cast<sf::Keyboard::Scancode>(key);
+
+	// check if the key exists in map before accessing with op[]
+	// to prevent inserting that key into map
+	if (recently_updated_keys.count(sc) == 0) return false;
+	return !recently_updated_keys[sc];
+}
+
+void Input::setMouseButtonDown(sf::Mouse::Button mb, bool state)
+{
+	int idx = static_cast<int>(mb);
+	mouse_buttons[idx] = state;
+	recently_updated_mouse_buttons[mb] = state;
+}
+
+bool Input::isMouseButtonDown(sf::Mouse::Button mb)
+{
+	int idx = static_cast<int>(mb);
+	return mouse_buttons[idx];
+}
+
+bool Input::isMouseButtonPressed(sf::Mouse::Button mb)
+{
+	// key can't just be pressed if it isn't down
+	if (!isMouseButtonDown(mb)) return false;
+
+	// check if the key exists in map before accessing with op[]
+	// to prevent inserting that key into map
+	if (recently_updated_mouse_buttons.count(mb) == 0) return false;
+	return recently_updated_mouse_buttons[mb];
+}
+
+bool Input::isMouseButtonReleased(sf::Mouse::Button mb)
+{
+	// key can't just be released if it is down
+	if (isMouseButtonDown(mb)) return false;
+
+	// check if the key exists in map before accessing with op[]
+	// to prevent inserting that key into map
+	if (recently_updated_mouse_buttons.count(mb) == 0) return false;
+	return !recently_updated_mouse_buttons[mb];
+}
+
+void Input::update()
+{
+	recently_updated_keys.clear();
+	recently_updated_mouse_buttons.clear();
+}
+

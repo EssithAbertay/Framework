@@ -31,14 +31,34 @@ void handleEvents(sf::RenderWindow *wn, Input *in)
             in->setControllerButtonDown(joystick_button_pressed->button, true);
         }
 
-        if (const auto* joystick_button_pressed = event->getIf<sf::Event::JoystickButtonReleased>()) //gamepad buttons being released
+        if (const auto* joystick_button_released= event->getIf<sf::Event::JoystickButtonReleased>()) //gamepad buttons being released
         {
-            in->setControllerButtonDown(joystick_button_pressed->button, false);
+            in->setControllerButtonDown(joystick_button_released->button, false);
         }
 
         if (const auto* joystickMoved = event->getIf<sf::Event::JoystickMoved>()) //leftstick or rightstick being moved
         {
             in->setJoystickAxis(joystickMoved->axis, joystickMoved->position);
+        }
+
+        if (const auto* keyboard_key_pressed = event->getIf<sf::Event::KeyPressed>())
+        {
+            in->setKeyDown(keyboard_key_pressed->scancode, true);
+        }
+
+        if (const auto* keyboard_key_released = event->getIf<sf::Event::KeyReleased>())
+        {
+            in->setKeyDown(keyboard_key_released->scancode, false);
+        }
+
+        if (const auto* mouse_button_pressed = event->getIf<sf::Event::MouseButtonPressed>())
+        {
+            in->setMouseButtonDown(mouse_button_pressed->button, true);
+        }
+
+        if (const auto* mouse_button_released = event->getIf<sf::Event::MouseButtonReleased>())
+        {
+            in->setMouseButtonDown(mouse_button_released->button, false);
         }
     }
 
@@ -48,6 +68,9 @@ int main()
 {
 
     sf::RenderWindow window(sf::VideoMode({ 720, 720 }), "SFML Framework");
+    
+    // disables repeat KeyPressed events, you can remove this line if you want this functionality
+    window.setKeyRepeatEnabled(false);
 
     Game this_game(&window);
     
@@ -96,6 +119,9 @@ int main()
       
         //later add an interpolation, maybe get a list of all enitites and use their velocity
         this_game.renderGame();
+
+        // reset the pressed/released functions for next frame
+        input.update();
     }
 
     return 0;
