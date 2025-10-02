@@ -15,6 +15,9 @@ Framework created as part of prepartion for university coursework, to help ease 
 - Audio
 - Circle Colliders
 
+## Known Issues
+- Not all controllers curently supported
+
 ## Contributors
 - Ari Alexander Tannahill Thomson | [Portfolio](aatthomsondev.co.uk)
 - Eryth Davidson | [Portfolio](eryth.is-a.dev/)
