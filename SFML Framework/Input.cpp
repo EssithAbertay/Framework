@@ -153,6 +153,13 @@ void Input::setMouseButtonDown(sf::Mouse::Button mb, bool state)
 	recently_updated_mouse_buttons[mb] = state;
 }
 
+void Input::setMousePosition(sf::Window * wn)
+{
+	mouse_pos_global = sf::Mouse::getPosition();
+	mouse_pos_local = sf::Mouse::getPosition(*wn); //pass in the window so that we can find the position of the mouse within it
+
+}
+
 bool Input::isMouseButtonDown(sf::Mouse::Button mb)
 {
 	int idx = static_cast<int>(mb);
