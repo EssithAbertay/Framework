@@ -63,8 +63,8 @@ public:
 	sf::Vector2f right_joystick = {0,0};
 
 
-	sf::Vector2i mouse_pos_local = { 0,0 };
-	sf::Vector2i mouse_pos_global = { 0,0 };
+	sf::Vector2i mouse_pos_local = { 0,0 }; // position of mouse within the window
+	sf::Vector2i mouse_pos_global = { 0,0 }; // position of mouse on screen
 
 protected:
 	float dpad_tolerance = 50;	

@@ -156,7 +156,7 @@ void Input::setMouseButtonDown(sf::Mouse::Button mb, bool state)
 void Input::setMousePosition(sf::Window * wn)
 {
 	mouse_pos_global = sf::Mouse::getPosition();
-	mouse_pos_local = sf::Mouse::getPosition(*wn);
+	mouse_pos_local = sf::Mouse::getPosition(*wn); //pass in the window so that we can find the position of the mouse within it
 
 }
 
