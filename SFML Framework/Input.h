@@ -1,5 +1,6 @@
 #include "SFML/Window.hpp"
 #include <iostream>
+#include <map>
 
 #pragma once
 class Input
@@ -8,7 +9,29 @@ public:
 
 	void setControllerButtonDown(int input_id, bool state);
 	void setJoystickAxis(sf::Joystick::Axis axis, float value);
+	void setKeyDown(sf::Keyboard::Scancode sc, bool state);
+	void setMouseButtonDown(sf::Mouse::Button mb, bool state);
 
+	// Used to determine if a key is currently being held down.
+	bool isKeyDown(sf::Keyboard::Key key);
+
+	// Used to determine if a key was just pressed.
+	bool isKeyPressed(sf::Keyboard::Key key);
+
+	// Used to determine if a key was just released.
+	bool isKeyReleased(sf::Keyboard::Key key);
+
+	// Used to determine if a mouse button is currently being held down.
+	bool isMouseButtonDown(sf::Mouse::Button mb);
+
+	// Used to determine if a mouse button was just pressed.
+	bool isMouseButtonPressed(sf::Mouse::Button mb);
+
+	// Used to determine if a mouse button was just released.
+	bool isMouseButtonReleased(sf::Mouse::Button mb);
+
+	// Clears the pressed/released map for next tick.
+	void update();
 
 	bool a_button_down = false;
 	bool b_button_down = false;
@@ -41,5 +64,12 @@ public:
 protected:
 	float dpad_tolerance = 50;	
 	float trigger_tolerance = 50;
+
+private:
+	bool keys[sf::Keyboard::ScancodeCount]{ false };
+	std::map<sf::Keyboard::Scancode, bool> recently_updated_keys;
+
+	bool mouse_buttons[sf::Mouse::ButtonCount]{ false };
+	std::map<sf::Mouse::Button, bool> recently_updated_mouse_buttons;
 };
 
