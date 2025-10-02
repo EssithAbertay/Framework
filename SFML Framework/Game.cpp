@@ -14,6 +14,18 @@ Game::~Game()
 
 void Game::handleInput(Input *in)
 {
+	if (in->isKeyPressed(sf::Keyboard::Key::A)) {
+		AudioManager::getInstance().playMusic("shop");
+	}
+	if (in->isKeyPressed(sf::Keyboard::Key::B)) {
+		AudioManager::getInstance().playMusic("main");
+	}
+	if (in->isKeyPressed(sf::Keyboard::Key::C)) {
+		AudioManager::getInstance().stopMusic();
+	}
+	if (in->isKeyPressed(sf::Keyboard::Key::D)) {
+
+	}
 }
 
 void Game::fixedUpdate(float fixed_timestep)

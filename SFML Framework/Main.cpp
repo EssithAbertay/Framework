@@ -75,7 +75,10 @@ int main()
     Game this_game(&window);
     
     Input input;
-   
+    AudioManager& aud = AudioManager::getInstance();
+
+    aud.addMusic("sfx/shop.wav", "shop");
+    aud.addMusic("sfx/mainLevelMusic.wav", "main");
  
      // Variable timestep, from https://gafferongames.com/post/fix_your_timestep/ accessed: 09/05/2025
     // Glenn Fiedler, 2004
