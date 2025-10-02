@@ -16,7 +16,7 @@ Framework created as part of prepartion for university coursework, to help ease 
 - Circle Colliders
 
 # Contributors
-- Ari Alexander Tannahill Thomson | aatthomsondev.co.uk
-- Eryth Davidson | eryth.is-a.dev/
+- Ari Alexander Tannahill Thomson | [Portfolio](aatthomsondev.co.uk)
+- Eryth Davidson | [Portfolio](eryth.is-a.dev/)
 
 
