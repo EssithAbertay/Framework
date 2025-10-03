@@ -80,7 +80,7 @@ int main()
     Game this_game(&window);
     
     Input input;
-   
+    AudioManager& aud = AudioManager::getInstance();
  
      // Variable timestep, from https://gafferongames.com/post/fix_your_timestep/ accessed: 09/05/2025
     // Glenn Fiedler, 2004
