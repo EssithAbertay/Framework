@@ -8,11 +8,11 @@ Framework created as part of prepartion for university coursework, to help ease 
 - Collision entities
 - Input abstraction layer
 - SAT and AABB collision detection for rectangles
+- Audio Manager
   
 ## Future Work
 - Entity Management
 - Frame Interpolation
-- Audio
 - Circle Colliders
 
 ## Known Issues
