@@ -84,6 +84,11 @@ int main()
 
     aud.addMusic("sfx/shop.wav", "shop");
     aud.addMusic("sfx/mainLevelMusic.wav", "main");
+    aud.getMusicObject("main")->setSongLoopPoints({ sf::seconds(2), sf::seconds(5)});
+
+    aud.addSound("sfx/menuOpen.wav", "open");
+    aud.addSound("sfx/menuClose.wav", "close");
+    aud.addSound("sfx/nuke.wav", "nuke", 8);
  
      // Variable timestep, from https://gafferongames.com/post/fix_your_timestep/ accessed: 09/05/2025
     // Glenn Fiedler, 2004

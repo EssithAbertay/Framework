@@ -2,40 +2,82 @@
 
 bool AudioManager::addMusic(std::string filename, std::string key)
 {
-	if (music_files.count(key) > 0) return false;
-	music_files[key] = filename;
+	if (music_objects.count(key) > 0) return false;
+	music_objects[key] = MusicObject(filename);
 	return true;
 }
 
-bool AudioManager::addSound(std::string filename, std::string key)
+bool AudioManager::addSound(std::string filename, std::string key, int maxPlaying)
 {
 	if (sound_objects.count(key) > 0) return false;
-	//sound_objects[key] = filename;
+
+	// clamp num concurrent sfx
+	if (maxPlaying < 1) maxPlaying = 1;
+	if (maxPlaying > 8) maxPlaying = 8;
+
+	SoundObject soundObj;
+	soundObj.loadSound(filename, maxPlaying);
+	sound_objects[key] = soundObj;
 	return true;
 }
 
-sf::Music* AudioManager::getMusic()
+sf::Music* AudioManager::getMusicStream()
 {
 	return &music;
 }
 
-sf::Sound* AudioManager::getSound(std::string key)
+MusicObject* AudioManager::getMusicObject(std::string key)
+{
+	if (music_objects.count(key) == 0) return nullptr;
+	return &music_objects[key];
+}
+
+SoundObject* AudioManager::getSoundObject(std::string key)
 {
 	if (sound_objects.count(key) == 0) return nullptr;
-	return sound_objects[key];
+	return &sound_objects[key];
 }
 
 void AudioManager::playMusic(std::string key)
 {
 	// can't play music that doesn't exist
-	if (music_files.count(key) == 0) return;
+	if (music_objects.count(key) == 0) return;
 
-	music.openFromFile(music_files[key]);
+	// get the music object and load the file into the stream
+	MusicObject musicObj = music_objects[key];
+	music.openFromFile(musicObj.getFilename());
+
+	// If the song loops, set music stream to loop
+	music.setLooping(musicObj.getLooping());
+
+	// If it has custom loop points, use them
+	if (musicObj.getLoopPoints().length > sf::Time::Zero) {
+		music.setLoopPoints(musicObj.getLoopPoints());
+	}
+	// Otherwise, reset the loop points
+	else {
+		music.setLoopPoints({ sf::Time::Zero, sf::Time::Zero });
+	}
+
 	music.play();
 }
 
 void AudioManager::playSound(std::string key)
 {
+	if (sound_objects.count(key) == 0) return;
+
+	SoundObject soundObj = sound_objects[key];
+	if (soundObj.getMaxConcurrent() == 1) {
+		soundObj.getSound()->play();
+	}
+	else {
+		sf::Sound* freeSound = soundObj.getFreeSound();
+		if (freeSound == nullptr) { 
+			soundObj.getSound()->play();
+			return;
+		}
+		freeSound->play();
+	}
 }
 
 void AudioManager::stopMusic()
@@ -45,4 +87,10 @@ void AudioManager::stopMusic()
 
 void AudioManager::stopAllSounds()
 {
+	for (auto& keyValPair : sound_objects) {
+		SoundObject sObj = keyValPair.second;
+		for (sf::Sound* snd : *sObj.getSounds()) {
+			snd->stop();
+		}
+	}
 }
