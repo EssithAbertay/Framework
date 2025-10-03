@@ -14,6 +14,9 @@ Framework created as part of prepartion for university coursework, to help ease 
 - Entity Management
 - Frame Interpolation
 - Circle Colliders
+- Spritesheet Animation
+- Tilesheets
+- State Machine
 
 ## Known Issues
 - Not all controllers curently supported
