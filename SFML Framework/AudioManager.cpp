@@ -1,24 +1,23 @@
 #include "AudioManager.h"
 
-bool AudioManager::addMusic(std::string filename, std::string key)
+MusicObject* AudioManager::addMusic(std::string filename, std::string key)
 {
-	if (music_objects.count(key) > 0) return false;
+	// key exists in map so can't make the music object
+	if (music_objects.count(key) > 0) return nullptr;
+
+	// create object, store in map and return it
 	music_objects[key] = MusicObject(filename);
-	return true;
+	return &music_objects[key];
 }
 
-bool AudioManager::addSound(std::string filename, std::string key, int maxPlaying)
+SoundObject* AudioManager::addSound(std::string filename, std::string key)
 {
-	if (sound_objects.count(key) > 0) return false;
+	// key exists in map so can't make the sound object
+	if (sound_objects.count(key) > 0) return nullptr;
 
-	// clamp num concurrent sfx
-	if (maxPlaying < 1) maxPlaying = 1;
-	if (maxPlaying > 8) maxPlaying = 8;
-
-	SoundObject soundObj;
-	soundObj.loadSound(filename, maxPlaying);
-	sound_objects[key] = soundObj;
-	return true;
+	// create object, store in map and return it;
+	sound_objects[key] = SoundObject(filename);
+	return &sound_objects[key];
 }
 
 sf::Music* AudioManager::getMusicStream()
@@ -45,10 +44,13 @@ void AudioManager::playMusic(std::string key)
 
 	// get the music object and load the file into the stream
 	MusicObject musicObj = music_objects[key];
-	music.openFromFile(musicObj.getFilename());
+	if (music.openFromFile(musicObj.getFilename()) == false) return;
+
+	// assign this key as the last song played
+	last_song_key = key;
 
 	// If the song loops, set music stream to loop
-	music.setLooping(musicObj.getLooping());
+	music.setLooping(musicObj.getSongLooping());
 
 	// If it has custom loop points, use them
 	if (musicObj.getLoopPoints().length > sf::Time::Zero) {
@@ -56,8 +58,11 @@ void AudioManager::playMusic(std::string key)
 	}
 	// Otherwise, reset the loop points
 	else {
-		music.setLoopPoints({ sf::Time::Zero, sf::Time::Zero });
+		music.setLoopPoints({ sf::Time::Zero, music.getDuration() });
 	}
+
+	// Set the volume of the music stream
+	music.setVolume(music_volume * (musicObj.getSongVolume() / 100));
 
 	music.play();
 }
@@ -93,4 +98,16 @@ void AudioManager::stopAllSounds()
 			snd->stop();
 		}
 	}
+}
+
+void AudioManager::setMusicVolume(float vol)
+{
+	if (vol < 0) vol = 0;
+	if (vol > 100) vol = 100;
+	music_volume = vol;
+
+	if (last_song_key == "") return;
+
+	// adjust the volume of the music stream based on music and song volume
+	music.setVolume(music_volume * (music_objects[last_song_key].getSongVolume() / 100));
 }
