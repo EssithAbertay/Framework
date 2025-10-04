@@ -1,8 +1,7 @@
 #pragma once
+#include "Point.h"
 
-#include <SFML/Graphics.hpp>
-
-class ColliderShape
+class ColliderShape : public Point
 {
 public:
 	ColliderShape(sf::Vector2f p_centre, sf::Vector2f p_size);
@@ -24,6 +23,8 @@ public:
 	std::array<sf::Vector2f, 4> getLocalCorners();
 
 	std::array<sf::Vector2f, 4> getEdges();
+
+
 private:
 	void setCorners(); 
 

@@ -4,7 +4,9 @@
 
 #include "Input.h"
 #include "Entity.h"
+#include "CollisionEntity.h"
 #include "AudioManager.h"
+#include "Collision.h"
 
 class Game
 {
@@ -22,5 +24,8 @@ public:
 
 private:
 	sf::RenderWindow* game_window;
+
+	CollisionEntity testone;
+	CollisionEntity testtwo;
 };
 
