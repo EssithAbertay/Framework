@@ -6,6 +6,10 @@ CircleCollider::CircleCollider(sf::Vector2f p_centre, float p_radius)
 	radius = p_radius;
 }
 
+CircleCollider::CircleCollider()
+{
+}
+
 CircleCollider::~CircleCollider()
 {
 	

@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
+    <ClCompile Include="CircleEntity.cpp" />
     <ClCompile Include="ColliderShape.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CollisionEntity.cpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="CircleCollider.h" />
+    <ClInclude Include="CircleEntity.h" />
     <ClInclude Include="ColliderShape.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionEntity.h" />
