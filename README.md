@@ -7,7 +7,7 @@ Framework created as part of prepartion for university coursework, to help ease 
 - Generic entities
 - Collision entities
 - Input abstraction layer
-- Rectangle, cirlce, and point collision
+- Rectangle, circle, and point collision
 - Audio Manager
 - Spritesheet Animation
   
