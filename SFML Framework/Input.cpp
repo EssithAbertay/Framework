@@ -114,7 +114,7 @@ void Input::setKeyDown(sf::Keyboard::Key key, bool state)
 	recently_updated_keys[key] = state;
 }
 
-bool Input::isKeyDown(sf::Keyboard::Key key)
+bool Input::isKeyDown(sf::Keyboard::Key key) const
 {
 	int idx = static_cast<int>(key);
 	return keys[idx];
@@ -156,7 +156,7 @@ void Input::setMousePosition(sf::Window * wn)
 
 }
 
-bool Input::isMouseButtonDown(sf::Mouse::Button mb)
+bool Input::isMouseButtonDown(sf::Mouse::Button mb) const
 {
 	int idx = static_cast<int>(mb);
 	return mouse_buttons[idx];

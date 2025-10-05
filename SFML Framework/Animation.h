@@ -27,7 +27,7 @@ public:
 	sf::IntRect getCurrentFrame();
 
 	// Return the index of the current frame in the vector.
-	int getFrameIndex() { return current_frame; }
+	int getFrameIndex() const { return current_frame; }
 	// Return the number of frames in the vector.
 	int getFrameCount() { return frames.size(); };
 	// Jump to a specific frame in the animation.
