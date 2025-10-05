@@ -27,9 +27,5 @@ public:
 private:
 	sf::RenderWindow* game_window;
 
-	CollisionEntity testone;
-	CollisionEntity testtwo;
-
-	CircleEntity testthree;
 };
 
