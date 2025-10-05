@@ -29,6 +29,8 @@ void CircleEntity::variableUpdate(float dt)
 
 CircleCollider* CircleEntity::getCollider()
 {
+	collider.setRadius(getRadius());
+
 	collider.setPosition(sf::Vector2f(getPosition().x + getRadius(), getPosition().y + getRadius()));
 	return & collider;
 }

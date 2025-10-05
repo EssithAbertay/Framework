@@ -26,6 +26,5 @@ public:
 
 private:
 	sf::RenderWindow* game_window;
-
 };
 
