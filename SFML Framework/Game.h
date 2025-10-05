@@ -5,6 +5,7 @@
 #include "Input.h"
 #include "Entity.h"
 #include "CollisionEntity.h"
+#include "CircleEntity.h"
 #include "AudioManager.h"
 #include "Collision.h"
 
@@ -27,5 +28,7 @@ private:
 
 	CollisionEntity testone;
 	CollisionEntity testtwo;
+
+	CircleEntity testthree;
 };
 
