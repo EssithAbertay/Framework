@@ -9,7 +9,7 @@ public:
 
 	void setControllerButtonDown(int input_id, bool state);
 	void setJoystickAxis(sf::Joystick::Axis axis, float value);
-	void setKeyDown(sf::Keyboard::Scancode sc, bool state);
+	void setKeyDown(sf::Keyboard::Key key, bool state);
 	void setMouseButtonDown(sf::Mouse::Button mb, bool state);
 	void setMousePosition(sf::Window * wn);
 
@@ -72,7 +72,7 @@ protected:
 
 private:
 	bool keys[sf::Keyboard::ScancodeCount]{ false };
-	std::map<sf::Keyboard::Scancode, bool> recently_updated_keys;
+	std::map<sf::Keyboard::Key, bool> recently_updated_keys;
 
 	bool mouse_buttons[sf::Mouse::ButtonCount]{ false };
 	std::map<sf::Mouse::Button, bool> recently_updated_mouse_buttons;

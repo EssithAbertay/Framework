@@ -29,7 +29,7 @@ void Game::handleInput(Input *in)
 		fps++;
 		anim.setAnimationFps(fps);
 	}
-	if (in->isKeyPressed(sf::Keyboard::Key::B)) {
+	if (in->isKeyPressed(sf::Keyboard::Key::Space)) {
 		if (anim.isPlaying()) {
 			anim.pause();
 		}
