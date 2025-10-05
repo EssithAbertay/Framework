@@ -13,7 +13,7 @@ public:
 	void fixedUpdate(float dt) override;
 	void variableUpdate(float dt) override;
 
-	ColliderShape & getCollider();
+	ColliderShape* getCollider();
 
 private:
 	ColliderShape collider;

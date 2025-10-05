@@ -137,6 +137,8 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="CircleCollider.cpp" />
+    <ClCompile Include="CircleEntity.cpp" />
     <ClCompile Include="ColliderShape.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CollisionEntity.cpp" />
@@ -144,17 +146,21 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Point.cpp" />
     <ClCompile Include="SoundObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="CircleCollider.h" />
+    <ClInclude Include="CircleEntity.h" />
     <ClInclude Include="ColliderShape.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionEntity.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="SoundObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
