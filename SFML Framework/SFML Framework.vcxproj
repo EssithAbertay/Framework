@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="ColliderShape.cpp" />
     <ClCompile Include="Collision.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="SoundObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="ColliderShape.h" />
     <ClInclude Include="Collision.h" />
