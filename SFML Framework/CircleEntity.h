@@ -5,6 +5,7 @@
 class CircleEntity :public sf::CircleShape
 {
 public:
+	CircleEntity(sf::Vector2f p_position,float p_radius);
 	CircleEntity();
 	~CircleEntity();
 

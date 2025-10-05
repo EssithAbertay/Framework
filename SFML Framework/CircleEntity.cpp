@@ -1,11 +1,17 @@
 #include "CircleEntity.h"
 
+CircleEntity::CircleEntity(sf::Vector2f p_position, float p_radius)
+{
+	setRadius(p_radius);
+	setPosition(p_position);
+
+	collider.setRadius(p_radius);
+	collider.setPosition(sf::Vector2f(getPosition().x + getRadius(), getPosition().y + getRadius()));
+}
+
 CircleEntity::CircleEntity()
 {
-	setRadius(15);
-
-	collider.setRadius(15);
-	collider.setPosition(sf::Vector2f(getPosition().x + getRadius(), getPosition().y + getRadius()));
+	
 }
 
 CircleEntity::~CircleEntity()
