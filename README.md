@@ -12,6 +12,7 @@ Framework created as part of prepartion for university coursework, to help ease 
 - Spritesheet Animation
   
 ## Future Work
+- Redo default entity classes
 - Entity Management
 - Frame Interpolation
 - Tilesheets
