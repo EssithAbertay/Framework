@@ -7,14 +7,13 @@ Framework created as part of prepartion for university coursework, to help ease 
 - Generic entities
 - Collision entities
 - Input abstraction layer
-- SAT and AABB collision detection for rectangles
+- Rectangle and circle collision
 - Audio Manager
 - Spritesheet Animation
   
 ## Future Work
 - Entity Management
 - Frame Interpolation
-- Circle Colliders
 - Tilesheets
 - State Machine
 
