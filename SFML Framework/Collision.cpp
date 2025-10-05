@@ -31,6 +31,24 @@ bool Collision::checkCollision(Point * first, Point * second)
 	return false;
 }
 
+bool Collision::checkPointEntityCollision(sf::Vector2f point, Point* entity)
+{
+	if (CircleCollider* circ = dynamic_cast<CircleCollider*>(entity))
+	{
+		return collisionTest(point, circ);
+	}
+	else if (ColliderShape* rect = dynamic_cast<ColliderShape*>(entity))
+	{
+		return collisionTest(point, rect);
+	}
+
+	return false;
+}
+
+
+
+
+
 bool Collision::checkAABBCollision(sf::RectangleShape & first_bounding_box, sf::RectangleShape &second_bounding_box) //ccurrently unused :(
 {
 	bool is_colliding = first_bounding_box.getGlobalBounds().findIntersection(second_bounding_box.getGlobalBounds()) ? true : false;
@@ -112,6 +130,47 @@ bool Collision::collisionTest(ColliderShape * first_collider, CircleCollider * s
 	}
 
 	return true;
+}
+
+bool Collision::collisionTest(sf::Vector2f point, CircleCollider* collider)
+{
+	sf::Vector2f connecting_vector = point - collider->getPosition();
+
+	float dist = connecting_vector.length();
+
+	return dist <= collider->getRadius();
+}
+
+// Polyogn point collision, from https://www.jeffreythompson.org/collision-detection/poly-point.php accessed: 05/10/2025
+
+
+bool Collision::collisionTest(sf::Vector2f point, ColliderShape* collider)
+{
+	bool collision = false;
+
+	std::array<sf::Vector2f, 4> corners = collider->getTransformedCorners();
+	
+	sf::Vector2f tc, nc;
+
+	int next = 0;
+
+	for (int i = 0; i < corners.size(); i++)
+	{
+		next = i + 1;
+
+		if (next == corners.size()) { next = 0; }
+
+		tc = corners[i];
+		nc = corners[next];
+
+		if (((tc.y >= point.y && nc.y < point.y) || (tc.y < point.y && nc.y >= point.y)) && (point.x < (nc.x - tc.x) * (point.y - tc.y) / (nc.y - tc.y) + tc.x)) 
+		{
+			collision = !collision;
+		}
+	}
+
+
+	return collision;
 }
 
 sf::Vector2f Collision::project(sf::Vector2f axis, std::array<sf::Vector2f, 4> vertices)

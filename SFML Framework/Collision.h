@@ -8,12 +8,18 @@ class Collision
 {
 public:
 	static bool checkCollision(Point* first, Point* second);
+	static bool checkPointEntityCollision(sf::Vector2f point, Point* entity);
 
 private:
-	static bool checkAABBCollision(sf::RectangleShape &first_bounding_box, sf::RectangleShape &second_bounding_box);
+	static bool checkAABBCollision(sf::RectangleShape &first_bounding_box, sf::RectangleShape &second_bounding_box); // currently unused
+
 	static bool collisionTest(ColliderShape * first_collider, ColliderShape * second_collider); //rectangle/rectangle collision
 	static bool collisionTest(CircleCollider * first_collider, CircleCollider * second_collider); //circle/circle collision
 	static bool collisionTest(ColliderShape * first_collider, CircleCollider * second_collider); //rectangle/circle collision
+
+	static bool collisionTest(sf::Vector2f point, CircleCollider* collider); //point/circle collision
+	static bool collisionTest(sf::Vector2f point, ColliderShape* collider); //point/rectangle collision
+
 	//functions for SAT collision
 	static sf::Vector2f project(sf::Vector2f axis, std::array<sf::Vector2f, 4> vertices);
 	static sf::Vector2f project(sf::Vector2f axis, sf::Vector2f point, float radius);
