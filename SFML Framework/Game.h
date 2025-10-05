@@ -5,6 +5,7 @@
 #include "Input.h"
 #include "Entity.h"
 #include "AudioManager.h"
+#include "Animation.h"
 
 class Game
 {
@@ -22,5 +23,11 @@ public:
 
 private:
 	sf::RenderWindow* game_window;
+
+	const sf::Texture tex = sf::Texture("Textures/walkcycle.png");
+	sf::Sprite sprite = sf::Sprite(tex);
+	Animation anim;
+
+	int fps = 8;
 };
 

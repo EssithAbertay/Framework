@@ -27,26 +27,26 @@ public:
 	sf::IntRect getCurrentFrame();
 
 	// Return the index of the current frame in the vector.
-	int getFrameIndex();
+	int getFrameIndex() { return current_frame; }
 	// Return the number of frames in the vector.
-	int getFrameCount();
+	int getFrameCount() { return frames.size(); };
 	// Jump to a specific frame in the animation.
 	void setFrameIndex(int frameIndex);
 
 	// Returns true if the frame has changed since the last time this function was called.
-	// Useful to avoid repeat setTextureRect calls. 
+	// Includes flipping and resetting.
 	bool hasFrameChanged();
 
 	// Set the speed of animation using the time in seconds between frames.
-	void setAnimationSpeed(float frameTime);
+	void setAnimationSpeed(float frameTime) { animation_speed = frameTime; };
 	// Set the speed of animation using the rate of frames per second.
-	void setAnimationFps(float fps);
+	void setAnimationFps(float fps) { animation_speed = 1.0f / fps; };
 	// Get the time in seconds between animation frames.
-	float getAnimationSpeed() { return animation_speed; }
+	float getAnimationSpeed() const { return animation_speed; }
 
 	// Set the speed modifier of one specific frame, relative to the animation framerate. 1 is default.
 	// e.g. 0.5 makes a frame persist twice as long, 2.0 makes it persist half as long.
-	void setFrameSpeed(int frameIndex, float percent);
+	void setFrameSpeed(int frameIndex, float speed);
 	// Get the speed % of one specific frame.
 	float getFrameSpeed(int frameIndex);
 
@@ -54,21 +54,21 @@ public:
 	// Boomerang reverses the play direction at the start/end
 	void setLooping(AnimLoopType loopType) { loop_type = loopType; }
 	// Get the animation loop type.
-	AnimLoopType getLooping() { return loop_type; };
+	AnimLoopType getLooping() const { return loop_type; };
 
 	// Set the play direction of the animation.
 	void setPlayDirection(bool forward) { playing_forward = forward; }
 	// Get the direction of play.
-	bool isPlayingForward() { return playing_forward; }
+	bool isPlayingForward() const { return playing_forward; }
 
 	// Set the animation's horizontal flip.
-	void setHorizontalFlip(bool flip) { h_flip = flip; }
+	void setHorizontalFlip(bool flip);
 	// Set the animation's vertical flip.
-	void setVerticalFlip(bool flip) { v_flip = flip; }
+	void setVerticalFlip(bool flip);
 	// Get the animation's horizontal flip.
-	bool getHorizontalFlip() { return h_flip; }
+	bool getHorizontalFlip() const { return h_flip; }
 	// Get the animation's vertical flip.
-	bool getVerticalFlip() { return v_flip; }
+	bool getVerticalFlip() const { return v_flip; }
 
 	// Play the animation.
 	void play() { playing = true; }
@@ -77,8 +77,10 @@ public:
 	// Reset the animation.
 	void reset();
 	// Get whether or not this animation is being played.
-	bool isPlaying() { return playing; }
+	bool isPlaying() const { return playing; }
 
+	// Advance the animation by the time elapsed. Returns true if the frame has changed.
+	void animate(float dt);
 
 private:
 	std::vector<Frame> frames;
