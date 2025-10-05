@@ -43,12 +43,12 @@ void handleEvents(sf::RenderWindow *wn, Input *in)
 
         if (const auto* keyboard_key_pressed = event->getIf<sf::Event::KeyPressed>())
         {
-            in->setKeyDown(keyboard_key_pressed->scancode, true);
+            in->setKeyDown(keyboard_key_pressed->code, true);
         }
 
         if (const auto* keyboard_key_released = event->getIf<sf::Event::KeyReleased>())
         {
-            in->setKeyDown(keyboard_key_released->scancode, false);
+            in->setKeyDown(keyboard_key_released->code, false);
         }
 
         if (const auto* mouse_button_pressed = event->getIf<sf::Event::MouseButtonPressed>())

@@ -32,7 +32,7 @@ public:
 	// Set the volume of the music stream.
 	void setMusicVolume(float vol);
 	// Get the volume of the music stream.
-	float getMusicVolume() { return music_volume; }
+	float getMusicVolume() const { return music_volume; }
 
 	// Get the instance of the AudioManager
 	static AudioManager& getInstance() {

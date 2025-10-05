@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="CircleEntity.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="SoundObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="CircleEntity.h" />

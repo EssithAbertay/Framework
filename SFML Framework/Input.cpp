@@ -107,14 +107,14 @@ void Input::setJoystickAxis(sf::Joystick::Axis axis, float value)
 	}
 }
 
-void Input::setKeyDown(sf::Keyboard::Scancode sc, bool state)
+void Input::setKeyDown(sf::Keyboard::Key key, bool state)
 {
-	int idx = static_cast<int>(sc);
+	int idx = static_cast<int>(key);
 	keys[idx] = state;
-	recently_updated_keys[sc] = state;
+	recently_updated_keys[key] = state;
 }
 
-bool Input::isKeyDown(sf::Keyboard::Key key)
+bool Input::isKeyDown(sf::Keyboard::Key key) const
 {
 	int idx = static_cast<int>(key);
 	return keys[idx];
@@ -125,12 +125,10 @@ bool Input::isKeyPressed(sf::Keyboard::Key key)
 	// key can't just be pressed if it isn't down
 	if (!isKeyDown(key)) return false;
 
-	sf::Keyboard::Scancode sc = static_cast<sf::Keyboard::Scancode>(key);
-
 	// check if the key exists in map before accessing with op[]
 	// to prevent inserting that key into map
-	if (recently_updated_keys.count(sc) == 0) return false;
-	return recently_updated_keys[sc];
+	if (recently_updated_keys.count(key) == 0) return false;
+	return recently_updated_keys[key];
 }
 
 bool Input::isKeyReleased(sf::Keyboard::Key key)
@@ -138,12 +136,10 @@ bool Input::isKeyReleased(sf::Keyboard::Key key)
 	// key can't just be released if it is down
 	if (isKeyDown(key)) return false;
 
-	sf::Keyboard::Scancode sc = static_cast<sf::Keyboard::Scancode>(key);
-
 	// check if the key exists in map before accessing with op[]
 	// to prevent inserting that key into map
-	if (recently_updated_keys.count(sc) == 0) return false;
-	return !recently_updated_keys[sc];
+	if (recently_updated_keys.count(key) == 0) return false;
+	return !recently_updated_keys[key];
 }
 
 void Input::setMouseButtonDown(sf::Mouse::Button mb, bool state)
@@ -160,7 +156,7 @@ void Input::setMousePosition(sf::Window * wn)
 
 }
 
-bool Input::isMouseButtonDown(sf::Mouse::Button mb)
+bool Input::isMouseButtonDown(sf::Mouse::Button mb) const
 {
 	int idx = static_cast<int>(mb);
 	return mouse_buttons[idx];

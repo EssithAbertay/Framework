@@ -7,6 +7,7 @@
 #include "CollisionEntity.h"
 #include "CircleEntity.h"
 #include "AudioManager.h"
+#include "Animation.h"
 #include "Collision.h"
 
 class Game

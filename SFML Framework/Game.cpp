@@ -3,18 +3,6 @@
 
 Game::Game(sf::RenderWindow* window)
 {
-	game_window = window;
-
-	testone.setFillColor(sf::Color::Blue);
-	testone.setSize(sf::Vector2f(100, 100));
-
-
-	testtwo.setFillColor(sf::Color::Green);
-	testtwo.setSize(sf::Vector2f(100, 100));
-	testtwo.setPosition(sf::Vector2f(200, 200));
-
-
-	testthree.setFillColor(sf::Color::Black);
 }
 
 Game::~Game()

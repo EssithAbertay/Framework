@@ -23,7 +23,7 @@ public:
 	sf::Sound* getFreeSound();
 
 	// Get how many sounds can play at once.
-	int getMaxConcurrent() { return max_playing; }
+	int getMaxConcurrent() const { return max_playing; }
 
 
 private:
@@ -47,11 +47,11 @@ public:
 	void setSongVolume(float vol);
 
 	// Whether or not the song should loop when played.
-	bool getSongLooping() { return loop_song; }
+	bool getSongLooping() const { return loop_song; }
 	// The points between which the song will loop.
-	sf::Music::TimeSpan getLoopPoints() { return loop_points; }
+	sf::Music::TimeSpan getLoopPoints() const { return loop_points; }
 	// The default volume for the song.
-	float getSongVolume() { return default_volume; }
+	float getSongVolume() const { return default_volume; }
 	// The filename for this song.
 	std::string getFilename() { return path; };
 

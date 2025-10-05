@@ -9,17 +9,17 @@ Framework created as part of prepartion for university coursework, to help ease 
 - Input abstraction layer
 - SAT and AABB collision detection for rectangles
 - Audio Manager
+- Spritesheet Animation
   
 ## Future Work
 - Entity Management
 - Frame Interpolation
 - Circle Colliders
-- Spritesheet Animation
 - Tilesheets
 - State Machine
 
 ## Known Issues
-- Not all controllers curently supported
+- Most controllers not currently supported (Xbox-style pads might work okay)
 
 ## Contributors
 - Ari Alexander Tannahill Thomson | [Portfolio](https://www.aatthomsondev.co.uk/)
